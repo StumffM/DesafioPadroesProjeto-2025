@@ -1,24 +1,39 @@
-import java.util.List;
+import java.util.*;
 
-public class VisualizadorDeSomatorio {
+public class VisualizadorDeSomatorio implements Observador {
     private List<Integer> valores;
+    private boolean ativo;
 
-    public VisualizadorDeSomatorio(List<Integer> valores){
-        this.valores = valores;
+    public VisualizadorDeSomatorio(){
+        this.valores = new ArrayList<>();
+        this.ativo = true;
     }
 
-    public void defineValores(List<Integer> valores){
-        this.valores = valores;
+    @Override
+    public void atualizar(int novoValor) {
+        if (ativo) {
+            valores.add(novoValor);
+        }
     }
 
-    public void acrescentaValor(Integer valor){
-        this.valores.add(valor);
+    @Override
+    public void exibir() {
+        if(ativo) {
+            int somatorio = valores.stream()
+                .mapToInt(Integer :: intValue)
+                .sum();
+            System.out.println("Somatório dos valores: " + somatorio + "\nQuantidade de valores: " + valores.size());
+        }
     }
 
-    public void exibeSomatorio(){
-        Integer soma = valores.stream()
-            .mapToInt(Integer::intValue)
-            .sum();
-        System.out.println("Somatorio: "+soma+", quantidade de elementos analisados: "+valores.size());
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+        if (!ativo) {
+            valores.clear();
+        }
+    }
+
+    public boolean isAtivo() {
+        return ativo;
     }
 }

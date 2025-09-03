@@ -15,11 +15,11 @@ public class App {
         int valor = 0;
         
         System.out.println("--- Sistema de Visualizadores ---");
-        System.out.println("-- Menu --");
+        System.out.println("\t-- Menu --");
         
         while(true){
             
-            System.out.println("0 - Sair");
+            System.out.println("\n0 - Sair");
             System.out.println("1 - Ativar/Desativar Média");
             System.out.println("2 - Ativar/Desativar Somatório");
             System.out.println("3 - Adicionar novo visualizador de Média");
